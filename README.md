@@ -2,6 +2,8 @@
 
 A simple bot that listens to `release` type event webhooks from Github, and tweets about `published` releases.
 
+[Source Code](https://github.com/braedon/github-tweeter) | [Docker Image](https://hub.docker.com/r/braedon/github-tweeter)
+
 ## How To Deploy
 
 ### 1. Twitter Setup
