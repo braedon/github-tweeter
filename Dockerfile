@@ -12,6 +12,7 @@ RUN pip install --no-cache-dir --upgrade pip \
 	&& pip install --no-cache-dir -r requirements.txt
 
 COPY *.py /app/
+COPY utils/*.py /app/utils/
 COPY github_tweeter/*.py /app/github_tweeter/
 COPY LICENSE /app/
 COPY README.md /app/
