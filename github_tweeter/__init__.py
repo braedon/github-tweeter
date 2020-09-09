@@ -10,6 +10,8 @@ from requests_oauthlib import OAuth1
 
 log = logging.getLogger(__name__)
 
+SERVER_READY = True
+
 
 def json_default_error_handler(http_error):
     response.content_type = 'application/json'
@@ -30,9 +32,17 @@ def construct_app(github_webhook_secret,
                    resource_owner_key=twitter_token_key,
                    resource_owner_secret=twitter_token_secret)
 
-    @app.get('/status')
-    def status():
-        return 'OK'
+    @app.get('/-/live')
+    def live():
+        return 'Live'
+
+    @app.get('/-/ready')
+    def ready():
+        if SERVER_READY:
+            return 'Ready'
+        else:
+            response.status = 503
+            return 'Unavailable'
 
     @app.post('/webhook')
     def webhook_post():
